@@ -15,6 +15,19 @@ View your app in AI Studio: https://ai.studio/apps/acafe70c-eb26-482e-9b04-caa02
 
 1. Install dependencies:
    `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
+2. Copy `.env.example` to `.env`
+3. Fill all `VITE_*` values in `.env`
+4. Run the app:
    `npm run dev`
+
+## Deploy To Vercel
+
+1. Push this project to GitHub.
+2. In Vercel, import the repository.
+3. In Vercel Project Settings -> Environment Variables, add all variables from `.env.example`.
+4. Deploy.
+
+Notes:
+- Build command: `npm run build`
+- Output directory: `dist`
+- SPA rewrites are already configured in `vercel.json`.

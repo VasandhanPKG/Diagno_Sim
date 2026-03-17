@@ -1,10 +1,10 @@
 {
-  "projectId": "diagnosim-a5763",
-  "appId": "1:650885862409:web:44cab2d1031b08a69954d8",
-  "apiKey": "AIzaSyBPNGy5WoUv9ZSl2w-yiQYG8VCnUkzDLlE",
-  "authDomain": "diagnosim-a5763.firebaseapp.com",
+  "projectId": "your_project_id",
+  "appId": "your_app_id",
+  "apiKey": "your_firebase_api_key",
+  "authDomain": "your_project.firebaseapp.com",
   "firestoreDatabaseId": "(default)",
-  "storageBucket": "diagnosim-a5763.firebasestorage.app",
-  "messagingSenderId": "650885862409",
-  "measurementId": "G-JVW9Y5V2FN"
+  "storageBucket": "your_project.firebasestorage.app",
+  "messagingSenderId": "your_messaging_sender_id",
+  "measurementId": "your_measurement_id"
 }
