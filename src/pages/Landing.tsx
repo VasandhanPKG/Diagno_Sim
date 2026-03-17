@@ -2,7 +2,14 @@ import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth, db } from "../firebase";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { motion } from "motion/react";
-import { Stethoscope, Activity, BookOpen, BarChart3, ShieldCheck } from "lucide-react";
+import { Stethoscope, HeartPulse, Brain, Activity, ShieldCheck, BookOpen, BarChart3, Flame, Trophy, Star, BadgeCheck, Sun, Moon } from "lucide-react";
+import Navbar from "../components/Navbar";
+import FeaturesSection from "../components/FeaturesSection";
+import GamificationSection from "../components/GamificationSection";
+import HowItWorksSection from "../components/HowItWorksSection";
+import ScreenshotSection from "../components/ScreenshotSection";
+import TestimonialsSection from "../components/TestimonialsSection";
+import Footer from "../components/Footer";
 
 export default function Landing() {
   const handleLogin = async () => {
@@ -32,85 +39,86 @@ export default function Landing() {
   };
 
   return (
-    <div className="min-h-screen bg-white overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-slate-100 dark:from-slate-900 dark:via-indigo-900 dark:to-slate-900 transition-colors duration-500">
+      <Navbar />
       {/* Hero Section */}
-      <div className="relative pt-20 pb-32 flex flex-col items-center px-4">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full opacity-5 pointer-events-none">
-          <div className="absolute top-20 left-1/4 w-64 h-64 bg-indigo-600 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 right-1/4 w-96 h-96 bg-emerald-600 rounded-full blur-3xl"></div>
+      <section className="relative pt-32 pb-36 flex flex-col items-center px-4 overflow-hidden">
+        {/* Gradient and blur shapes */}
+        <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+          <div className="absolute top-10 left-1/4 w-96 h-96 bg-indigo-500 opacity-30 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-10 right-1/4 w-96 h-96 bg-emerald-400 opacity-20 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/2 left-1/2 w-72 h-72 bg-indigo-200 opacity-10 rounded-full blur-2xl -translate-x-1/2 -translate-y-1/2"></div>
         </div>
-
+        {/* Animated medical icons */}
+        <motion.div className="absolute top-24 left-1/2 -translate-x-1/2 flex gap-12 z-10"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+        >
+          <motion.div animate={{ y: [0, -20, 0] }} transition={{ repeat: Infinity, duration: 3 }}>
+            <Stethoscope className="w-12 h-12 text-indigo-600 drop-shadow-lg" />
+          </motion.div>
+          <motion.div animate={{ y: [0, 20, 0] }} transition={{ repeat: Infinity, duration: 2 }}>
+            <HeartPulse className="w-12 h-12 text-rose-500 drop-shadow-lg" />
+          </motion.div>
+          <motion.div animate={{ y: [0, -15, 0] }} transition={{ repeat: Infinity, duration: 2.5 }}>
+            <Brain className="w-12 h-12 text-emerald-500 drop-shadow-lg" />
+          </motion.div>
+          <motion.div animate={{ y: [0, 15, 0] }} transition={{ repeat: Infinity, duration: 2.2 }}>
+            <Activity className="w-12 h-12 text-yellow-500 drop-shadow-lg" />
+          </motion.div>
+        </motion.div>
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center max-w-4xl z-10"
+          className="text-center max-w-4xl z-20 mt-32"
         >
           <div className="flex items-center justify-center mb-6">
             <div className="bg-indigo-600 p-3 rounded-2xl shadow-lg shadow-indigo-200">
               <Stethoscope className="w-10 h-10 text-white" />
             </div>
           </div>
-          <h1 className="text-6xl font-bold tracking-tight text-slate-900 mb-6">
-            Diagno<span className="text-indigo-600">Sim</span>
+          <h1 className="text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-6">
+            Diagno<span className="text-indigo-600 dark:text-indigo-400 animate-gradient">Sim</span>
           </h1>
-          <p className="text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed">
-            The "LeetCode" for clinical medicine. Master diagnosis through AI-powered simulations, 
-            track your daily streaks, and climb the curriculum leaderboard.
+          <p className="text-2xl text-slate-700 dark:text-slate-200 mb-8 max-w-2xl mx-auto leading-relaxed">
+            <span className="bg-gradient-to-r from-indigo-500 via-emerald-500 to-rose-500 bg-clip-text text-transparent font-bold">AI-powered clinical diagnosis simulation</span> for medical students and doctors.
           </p>
-          <button
-            onClick={handleLogin}
-            className="bg-slate-900 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-slate-800 transition-all shadow-xl shadow-slate-200 flex items-center gap-3 mx-auto"
-          >
-            Get Started with Google
-          </button>
+          <div className="flex flex-col md:flex-row gap-4 justify-center mb-6">
+            <button
+              onClick={handleLogin}
+              className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-xl shadow-indigo-200 transition-all focus:ring-2 focus:ring-indigo-400 ripple"
+            >
+              Get Started with Google
+            </button>
+            <a href="#demo" className="bg-white/80 hover:bg-white text-indigo-600 px-8 py-4 rounded-xl font-semibold text-lg shadow-xl shadow-indigo-100 transition-all border border-indigo-200 focus:ring-2 focus:ring-indigo-400 ripple">
+              Watch Demo
+            </a>
+          </div>
+          <div className="text-sm text-slate-500 dark:text-slate-300 mt-2">
+            <span className="bg-white/60 px-3 py-1 rounded-full shadow">Used by medical students and doctors</span>
+          </div>
         </motion.div>
+      </section>
 
-        {/* Features Grid */}
-        <div className="mt-32 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto w-full px-4">
-          <FeatureCard 
-            icon={<Activity className="w-6 h-6 text-indigo-600" />}
-            title="AI Virtual Patients"
-            description="Realistic patient simulations with dynamic symptom progression and natural language interaction."
-          />
-          <FeatureCard 
-            icon={<ShieldCheck className="w-6 h-6 text-emerald-600" />}
-            title="Clinical Accuracy"
-            description="Built on medical logic and probabilistic models to ensure realistic lab results and vitals."
-          />
-          <FeatureCard 
-            icon={<BookOpen className="w-6 h-6 text-amber-600" />}
-            title="Knowledge Library"
-            description="Access a comprehensive database of diseases, drugs, and clinical case studies."
-          />
-          <FeatureCard 
-            icon={<BarChart3 className="w-6 h-6 text-rose-600" />}
-            title="Performance Insights"
-            description="Detailed feedback on your diagnostic accuracy, speed, and clinical reasoning skills."
-          />
-        </div>
-      </div>
+      {/* Features Section */}
+      <FeaturesSection />
+
+      {/* How It Works Section */}
+      <HowItWorksSection />
+
+      {/* Gamification Section */}
+      <GamificationSection />
+
+      {/* Screenshot/Preview Section */}
+      <ScreenshotSection />
+
+      {/* Testimonials Section */}
+      <TestimonialsSection />
 
       {/* Footer */}
-      <footer className="border-t border-slate-100 py-12 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 text-center text-slate-500 text-sm">
-          © 2026 DiagnoSim. For educational purposes only.
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
 
-function FeatureCard({ icon, title, description }: { icon: React.ReactNode, title: string, description: string }) {
-  return (
-    <motion.div 
-      whileHover={{ y: -5 }}
-      className="p-8 bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all"
-    >
-      <div className="mb-4 bg-slate-50 w-fit p-3 rounded-xl">
-        {icon}
-      </div>
-      <h3 className="text-lg font-bold text-slate-900 mb-2">{title}</h3>
-      <p className="text-slate-600 text-sm leading-relaxed">{description}</p>
-    </motion.div>
-  );
-}
+// ...existing code...
